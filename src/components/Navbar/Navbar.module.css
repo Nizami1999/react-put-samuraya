@@ -1,0 +1,25 @@
+.nav{
+    background-color: rgba(37, 118, 172, .5);
+    margin: 0 1rem 0 0;
+}
+
+.nav ul a{
+    font-size: 1.4rem;
+    color: whitesmoke;
+}
+
+.item {
+    list-style: none;
+}
+
+.item a{
+    text-decoration: none;
+}
+
+.item a.active{
+    color: rgba(0, 0, 0, 0.421);
+}
+
+.set{
+    margin-top: 1rem;
+}

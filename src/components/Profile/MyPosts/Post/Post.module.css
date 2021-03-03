@@ -1,0 +1,16 @@
+.item img{
+    height: auto;
+    width: 10%;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.line{
+    background-color: grey;
+    width: 100%;
+    padding: 0.7px;
+}
+
+.likes{
+    padding-left: 90%;
+}

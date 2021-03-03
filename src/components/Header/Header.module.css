@@ -1,0 +1,11 @@
+.header{
+    background-color: rgba(37, 118, 172, .5);
+}
+
+.logo img{
+    width: 10%;
+}
+
+.logo{
+    margin-left: 1rem;
+}
