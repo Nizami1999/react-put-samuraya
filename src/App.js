@@ -9,6 +9,7 @@ import News from './components/News/News';
 import { Route, BrowserRouter } from 'react-router-dom';
 
 const App = (props) => {
+  
   return (
     <div>
       <main className="container">
