@@ -5,18 +5,16 @@ import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../r
 
 const MyPosts = (props) => {
 
-    let postsElement = props.profilePage.map(p => <Post userName = {p.userName} photo = {p.photo} likes = {p.likes} postMessage = {p.postMessage}/>);
+    let postsElement = props.posts.map(p => <Post userName = {p.userName} photo = {p.photo} likes = {p.likes} postMessage = {p.postMessage}/>);
     let newPostElement = React.createRef();
 
     let addPost = () =>{
-        // props.addPost();
-        props.dispatch(addPostActionCreator());
+        props.addPost();
     }
 
     let onPostChange = () =>{
-        // props.updateNewPostText(text);
         let text = newPostElement.current.value;
-        props.dispatch(updateNewPostTextActionCreator(text));
+        props.updateNewPostText(text);
     }
 
     return (
