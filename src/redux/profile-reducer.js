@@ -11,25 +11,34 @@ let initialStore = {
     ],
     newPostText: ""
 }
- 
-const profileReducer = (state = initialStore, action) =>{
+
+const profileReducer = (state = initialStore, action) => {
 
     switch (action.type) {
         case ADD_POST:
-            let newPost = {
-                userName: "NizamiReact01",
-                photo: "https://www.meme-arsenal.com/memes/b5d2ec8e1ffa887b239fb66a8653dfe6.jpg",
-                likes: "0",
-                postMessage: state.newPostText
+            if (state.newPostText) {
+                
+                let newPost = {
+                    userName: "NizamiReact01",
+                    photo: "https://www.meme-arsenal.com/memes/b5d2ec8e1ffa887b239fb66a8653dfe6.jpg",
+                    likes: "0",
+                    postMessage: state.newPostText
+                }
+
+                return {
+                    ...state,
+                    newPostText: "",
+                    posts: [...state.posts, newPost]
+                };
             }
-            state.posts.push(newPost);
-            state.newPostText = "";
-            return state;
-            
+
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText;
-            return state;
-    
+
+            return {
+                ...state,
+                newPostText: action.newText
+            };
+
         default:
             return state;
     }
@@ -39,5 +48,5 @@ export const addPostActionCreator = () =>
     ({ type: ADD_POST })
 export const updateNewPostTextActionCreator = (text) =>
     ({ type: UPDATE_NEW_POST_TEXT, newText: text })
-    
+
 export default profileReducer
