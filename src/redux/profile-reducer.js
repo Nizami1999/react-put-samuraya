@@ -1,7 +1,7 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
-let initialStore = {
+let initialState = {
 
     posts: [
         { userName: "NizamiReact01", photo: "https://www.meme-arsenal.com/memes/b5d2ec8e1ffa887b239fb66a8653dfe6.jpg", likes: "83", postMessage: "Hello my name is Nizami" },
@@ -12,7 +12,7 @@ let initialStore = {
     newPostText: ""
 }
 
-const profileReducer = (state = initialStore, action) => {
+const profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_POST:
