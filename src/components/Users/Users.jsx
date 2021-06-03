@@ -1,29 +1,30 @@
 import React from 'react';
 import s from './Users.module.css';
+import * as axios from 'axios'
 
 const Users = (props) => {
 
-    if(!props.users.length){
-        props.setUsers(
-            [
-                { id: 1, photoURL: 'https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png', followed: true, fullName: 'Nizami', status: 'I am Nizami', location: { city: 'Baku', country: 'Azerbaijan' } },
-                { id: 2, photoURL: 'https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png', followed: false, fullName: 'Habib', status: 'I am Habib', location: { city: 'NY', country: 'USA' } },
-                { id: 3, photoURL: 'https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png', followed: true, fullName: 'Farid', status: 'I am Farid', location: { city: 'Naxcivan', country: 'Azerbaijan' } },
-            ]
-        )
+    let getUsers = () =>{
+        if (!props.users.length) {
+
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(res => {
+                props.setUsers(res.data.items);
+            })
+        }
     }
 
     return (
         <div>
+            <button onClick={getUsers}>Get Users</button>
             {
                 props.users.map(u =>
 
                     <div className={s.usersPage} key={u.id}>
-                        <img src={u.photoURL} alt="user-img" />
-                        <div>{u.fullName}</div>
-                        <div>{u.status}</div>
-                        <div>{u.location.country}</div>
-                        <div>{u.location.city}</div>
+                        <img src={u.photos.small ? u.photos.small : 'https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png'} alt="user-img" />
+                        <div>{u.name}</div>
+                        <div>Status: {u.status ? u.status : 'NO STATUS'}</div>
+                        <div>"u.location.country"</div>
+                        <div>"u.location.city"</div>
                         {u.followed
                             ? <button onClick={() => { props.unfollow(u.id) }}>Unfollow</button>
                             : <button onClick={() => { props.follow(u.id) }}>Follow</button>
