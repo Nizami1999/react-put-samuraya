@@ -1,9 +1,24 @@
 .usersPage{
     margin-bottom: 25px;
 }
-
 .usersPage img{
     object-fit: contain;
     width: 100px;
     height: 100px;
+}
+.pages{
+    display: flex;
+    flex-direction: row;
+}
+.pages,  span{
+    font-size: 1rem;
+    color: #222;
+    margin: .4rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    flex-wrap: wrap;
+}
+.pages .selectedPage{
+    font-weight: bold;
+    color: rgb(89, 89, 206);
 }
