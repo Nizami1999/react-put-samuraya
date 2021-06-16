@@ -13,7 +13,7 @@ const ProfileInfo = (props) => {
             <div className={s.hImage}>
             </div>
             <div className={s.faceStat}>
-                <img src={props.profile.photos.large} alt="me"></img>
+                <img src={props.profile.photos.large ? props.profile.photos.large : 'https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png'} alt="me"></img>
                 <nav>
                     <ul>
                         <li><h3>{props.profile.fullName}</h3></li>
