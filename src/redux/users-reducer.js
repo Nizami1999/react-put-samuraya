@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api";
+
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET-USERS";
@@ -81,6 +83,50 @@ export const setTotalUsersCount = (count) =>
     ({ type: SET_USERS_COUNT, count })
 export const toggleIsFetching = (isFetching) =>
 ({ type: TOGGLE_IS_FETCHING, isFetching })
-    
+
+
+export const getUsers = (currentPage, pageSize) => {
+  return dispatch => {
+    dispatch(toggleIsFetching(true));
+
+    usersAPI.getUsers(currentPage, pageSize).then(res => {
+      dispatch(toggleIsFetching(false));
+      dispatch(setUsers(res.items));
+      dispatch(setTotalUsersCount(res.totalCount));
+    });
+  };
+};
+
+export const pageChange = (pageNumber, pageSize) => {
+  return dispatch => {
+    dispatch(toggleIsFetching(true));
+    dispatch(setCurrentPage(pageNumber));
+
+    usersAPI.getUsers(pageNumber, pageSize).then(res => {
+      dispatch(toggleIsFetching(false));
+      dispatch(setUsers(res.items));
+    });
+  };
+};
+
+export const unfollowUser = userId => {
+  return dispatch => {
+    usersAPI.unfollowUser(userId).then(res => {
+      if (res.resultCode === 0) {
+        dispatch(unfollow(userId));
+      }
+    });
+  };
+};
+
+export const followUser = userId => {
+  return dispatch => {
+    usersAPI.followUser(userId).then(res => {
+      if (res.resultCode === 0) {
+        dispatch(follow(userId));
+      }
+    });
+  };
+};
 
 export default usersReducer;
